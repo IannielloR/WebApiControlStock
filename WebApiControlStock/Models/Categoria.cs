@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApiControlStock.Models
 {
@@ -10,5 +11,7 @@ namespace WebApiControlStock.Models
         [Column(TypeName = "varchar(50)")]
         
         public string Nombre { get; set; }
+        
+       public List<Producto> Productos { get; set; }
     }
 }

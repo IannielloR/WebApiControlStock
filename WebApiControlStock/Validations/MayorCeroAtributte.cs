@@ -7,16 +7,14 @@ namespace WebApiControlStock.Validations
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            double valor = (Double)value;
-            if (valor > 0)
+            double precio = (double)value;
+
+            if (precio <= 0)
             {
-                return ValidationResult.Success;
-            }
-            if (valor <= 0)
-            {
-                return new ValidationResult("El valor debe ser mayor que cero");
+                return new ValidationResult("Solo se aceptan precios mayores a cero");
             }
             return ValidationResult.Success;
+
         }
     }
 }

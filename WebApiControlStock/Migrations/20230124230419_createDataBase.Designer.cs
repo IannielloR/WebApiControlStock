@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiControlStock.Data;
 
 namespace WebApiControlStock.Migrations
 {
     [DbContext(typeof(DbControlStockContext))]
-    partial class DbControlStockContextModelSnapshot : ModelSnapshot
+    [Migration("20230124230419_createDataBase")]
+    partial class createDataBase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,7 +65,7 @@ namespace WebApiControlStock.Migrations
             modelBuilder.Entity("WebApiControlStock.Models.Producto", b =>
                 {
                     b.HasOne("WebApiControlStock.Models.Categoria", "Categoria")
-                        .WithMany("Productos")
+                        .WithMany()
                         .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
