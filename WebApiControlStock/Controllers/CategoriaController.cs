@@ -12,31 +12,31 @@ namespace WebApiControlStock.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductoController : ControllerBase
+    public class CategoriaController : ControllerBase
     {
         private readonly DbControlStockContext context;
 
-        public ProductoController(DbControlStockContext context)
+        public CategoriaController(DbControlStockContext context)
         {
             this.context = context;
         }
         // GET
         [HttpGet]
-        public ActionResult<IEnumerable<Producto>> Get()
+        public ActionResult<IEnumerable<Categoria>> Get()
         {
-            var result = context.Productos.Include(x => x.Categoria).ToList();
-            return result;
+            return  context.Categorias.ToList();
+       
         }
 
         //POST
         [HttpPost]
-        public ActionResult Post(Producto producto) 
+        public ActionResult Post(Categoria categoria)
         {
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            context.Productos.Add(producto);
+            context.Categorias.Add(categoria);
             context.SaveChanges();
 
             return Ok();

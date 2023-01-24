@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApiControlStock.Models;
+using WebApiControlStock.Data;
 
 namespace WebApiControlStock
 {
@@ -27,6 +27,11 @@ namespace WebApiControlStock
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DbControlStockContext>(options => options.UseSqlServer(Configuration.GetConnectionString("KeyDB")));
+            
+            services.AddMvc().AddNewtonsoftJson(
+                o => o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
+
             services.AddControllers();
         }
 
